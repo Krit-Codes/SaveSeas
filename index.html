@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaveSeas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --deep: #0b3d4f;
+    --sea: #1f7a8c;
+    --foam: #e8f4f2;
+    --sand: #f6efe2;
+    --coral: #e8735a;
+    --ink: #17303a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Nunito Sans", system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--sand);
+    line-height: 1.65;
+    font-size: 18px;
+  }
+  h1, h2, h3 { font-family: "Fraunces", Georgia, serif; line-height: 1.15; }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(180deg, var(--deep) 0%, var(--sea) 100%);
+    color: #fff;
+    padding: 96px 24px 140px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); font-weight: 800; margin-bottom: 20px; }
+  .hero p { max-width: 640px; margin: 0 auto; font-size: 1.2rem; opacity: .92; }
+  .hero a.btn {
+    display: inline-block; margin-top: 32px; padding: 14px 30px;
+    background: var(--coral); color: #fff; text-decoration: none;
+    font-weight: 700; border-radius: 999px; transition: transform .15s;
+  }
+  .hero a.btn:hover { transform: translateY(-2px); }
+  .wave { position: absolute; bottom: -1px; left: 0; width: 100%; height: 90px; }
+
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(246,239,226,.95); backdrop-filter: blur(6px);
+    border-bottom: 1px solid #e6dcc8;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 22px;
+    padding: 12px 16px;
+  }
+  nav a { color: var(--deep); text-decoration: none; font-weight: 700; font-size: .95rem; }
+  nav a:hover { color: var(--coral); }
+
+  section { padding: 72px 24px; }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  section h2 { font-size: clamp(1.9rem, 4.5vw, 2.6rem); color: var(--deep); margin-bottom: 24px; }
+  .kicker { text-transform: uppercase; letter-spacing: .12em; font-size: .78rem; font-weight: 700; color: var(--coral); margin-bottom: 8px; }
+
+  /* Call to action section */
+  #how { background: var(--foam); }
+  .cta-card {
+    background: #fff; border-left: 6px solid var(--coral);
+    border-radius: 14px; padding: 32px; font-size: 1.2rem;
+    box-shadow: 0 10px 30px rgba(11,61,79,.08);
+  }
+
+  /* 5 whys */
+  ol.whys { list-style: none; counter-reset: why; display: grid; gap: 14px; }
+  ol.whys li {
+    counter-increment: why; background: #fff; border-radius: 12px;
+    padding: 20px 22px 20px 72px; position: relative;
+    box-shadow: 0 4px 14px rgba(11,61,79,.06);
+  }
+  ol.whys li::before {
+    content: counter(why); position: absolute; left: 20px; top: 18px;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--sea); color: #fff; font-weight: 700;
+    display: grid; place-items: center;
+  }
+  ol.whys li strong { display: block; color: var(--deep); margin-bottom: 2px; }
+  ol.whys li.root { background: var(--deep); color: #fff; }
+  ol.whys li.root strong { color: #fff; }
+  ol.whys li.root::before { background: var(--coral); }
+  .root-tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--coral); font-weight: 700; }
+
+  /* stats */
+  #reefs { background: var(--deep); color: #fff; }
+  #reefs h2 { color: #fff; }
+  .subhead { opacity: .8; font-size: .95rem; margin-bottom: 32px; text-transform: uppercase; letter-spacing: .06em; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+  .stat { background: rgba(255,255,255,.08); border-radius: 14px; padding: 26px; }
+  .stat .num { font-family: "Fraunces", serif; font-size: 2.6rem; font-weight: 800; color: var(--coral); line-height: 1; margin-bottom: 10px; }
+
+  ul.profit { list-style: none; display: grid; gap: 12px; }
+  ul.profit li { padding-left: 28px; position: relative; }
+  ul.profit li::before { content: ""; position: absolute; left: 0; top: 11px; width: 12px; height: 12px; border-radius: 50%; background: var(--coral); }
+
+  footer { text-align: center; padding: 36px 24px; background: var(--sea); color: #fff; font-size: .95rem; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>SaveSeas</h1>
+  <p>The problem I chose was beach pollution because near my house most of the beaches are polluted and lots of animals die yearly due to pollution.</p>
+  <a class="btn" href="#how">How to stop it</a>
+  <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#f6efe2" d="M0,40 C240,90 480,0 720,35 C960,70 1200,10 1440,45 L1440,90 L0,90 Z"/>
+  </svg>
+</header>
+
+<nav>
+  <a href="#how">How to stop it</a>
+  <a href="#whys">5 Why's</a>
+  <a href="#reefs">Why coral reefs matter</a>
+  <a href="#profits">Who profits?</a>
+</nav>
+
+<section id="how">
+  <div class="wrap">
+    <p class="kicker">How to stop it</p>
+    <h2>Beach cleaning sessions</h2>
+    <div class="cta-card">
+      My neighborhood has been having beach cleaning sessions where we would go to a beach and clean it to remove the garbage. This has been working a lot because we have cleaned lots of beaches and it doesn't take too long.
+    </div>
+  </div>
+</section>
+
+<section id="whys">
+  <div class="wrap">
+    <h2>5 Why's</h2>
+    <ol class="whys">
+      <li><strong>Why is coral dying?</strong>Dredging stirs up mud that clouds the water, blocks sunlight and smothers coral.</li>
+      <li><strong>Why is there dredging?</strong>Builders dig sand from the seabed to make islands and new land.</li>
+      <li><strong>Why do they use sand from the sea?</strong>It is the closest and cheapest building material.</li>
+      <li><strong>Why does cheap matter so much?</strong>Saving time and money matters more to builders than protecting reefs.</li>
+      <li class="root"><span class="root-tag">Root cause</span><strong>Why don't they care about reefs?</strong>Companies don't pay for the damage they do to nature.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="reefs">
+  <div class="wrap">
+    <p class="kicker">Statistics, trends and data points</p>
+    <h2>Why coral reefs matter</h2>
+    <p class="subhead">Coastal construction killing UAE coral reefs</p>
+    <div class="stats">
+      <div class="stat"><div class="num">0.2%</div>Coral reefs cover only 0.2% of the ocean floor but support at least 25% of all marine species.</div>
+      <div class="stat"><div class="num">100s of millions</div>Hundreds of millions of people depend on reefs for food, jobs and storm protection.</div>
+      <div class="stat"><div class="num">97%</div>Reefs reduce wave energy by an average of 97%, protecting about 197 million people from storms and floods.</div>
+    </div>
+  </div>
+</section>
+
+<section id="profits">
+  <div class="wrap">
+    <h2>Who profits?</h2>
+    <ul class="profit">
+      <li>The real people that make money out of this are builders and construction companies, because they make money by building islands and building buildings on islands.</li>
+      <li>They can build parks on islands which attract tourists, which also makes more money.</li>
+      <li>Wealthy people and investors can buy luxury oceanfront homes.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>SaveSeas</footer>
+
+</body>
+</html>
